@@ -1,38 +1,18 @@
-from products.models.product_model import Product
+from orders.models.orders_model import Order
+
+def get_orders():
+    return Order.objects()
 
 
-def get_products():
-    return Product.objects(category={"$exists": True})
+def get_order_by_id(_id):
+    return Order.objects(id=_id).first()
 
 
-def get_product_by_id(_id):
-    return Product.objects(id=_id).first()
+def get_last_order():
+    return Order.objects().order_by('-id').limit(1)
 
 
-def get_products_by_category(category):
-    return Product.objects(category=category)
-
-
-def get_random_product():
-    return Product.objects().first()
-
-
-def get_products_with_discount():
-    return Product.objects(discount=True)
-
-
-def get_image_by_id(_id):
-    return Product.objects(id=_id).first().image
-
-
-def get_products_by_criteria(
-    qtd=1, category={"$exists": True}, discount={"$exists": True}
-):
-    return Product.objects(category=category, discount=discount).limit(int(qtd))
-
-
-def insert_product(body: dict, image):
-    product = Product(**body)
-    product.image.put(image, content_type="image/jpeg")
-    product.save()
-    return str(product.id)
+def insert_order(body: dict):
+    order = Order(**body)
+    order.save()
+    return str(order.id)

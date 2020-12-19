@@ -16,4 +16,4 @@ CORS(app)
 
 from .models import orders_model
 from .services import orders_service
-from .controllers import orders_many_controller, orders_one_controller
+from .controllers import orders_controller
