@@ -10,3 +10,4 @@ class Order(db.Document):
     payment_method = db.StringField(max_length=50, required=True)
     nfe_id = db.IntField(required=False)
     created_at = db.DateTimeField(default=datetime.utcnow(), required=False)
+    user_agent = db.StringField(required=True)
