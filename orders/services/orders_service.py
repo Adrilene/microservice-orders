@@ -9,7 +9,7 @@ def get_order_by_id(_id):
 
 
 def get_last_order():
-    return Order.objects().order_by('-id').limit(1)
+    return Order.objects().order_by('-id').first()
 
 
 def insert_order(body: dict):

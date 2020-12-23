@@ -1,6 +1,7 @@
 import json
 import requests
 from orders.services.orders_service import get_last_order
+import random
 
 def get_products_values(products): 
     values = []
@@ -11,12 +12,12 @@ def get_products_values(products):
     return sum(values)
 
 
-def generate_nfe_id(): 
-    nfe_id = 1
-    last = get_last_order()
-    if last: 
-        last = json.loads(last.to_json())
-        nfe_id = last['nfe_id'] + 1
+# ef generate_nfe_id(): 
+#     nfe_id = 1
+#     last = get_last_order()
+#     last = json.loads(last.to_json())
+#     if 'nfe_id' in last: 
+#         nfe_id = last['nfe_id'] + 1
 
-    return nfe_id
-
+#     return nfe_id
+# d
