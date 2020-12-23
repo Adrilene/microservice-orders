@@ -17,16 +17,14 @@ class OrderByIdController(Resource):
         return order
 
 class OrderController(Resource):
-
     def post(self):
-        delivery_fee = request.form['delivery_fee']
         data_json = {
-            'products': ast.literal_eval(request.form['products']),
-            'client_id': request.form['client_id'],
-            'payment_method': request.form['payment_method']
+            'products': request.json['products'],
+            'user_id': request.json['user_id'],
+            'payment_method': request.json['payment_method']
         }
-        data_json['nfe_id'] = generate_nfe_id()
-        data_json['amount'] = get_products_values(data_json['products']) + float(delivery_fee)
+        # data_json['nfe_id'] = generate_nfe_id()
+        data_json['amount'] = get_products_values(data_json['products'])
         insert_order(data_json)
         return 'OK'
 
